@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Deploy PR Preview to GitHub Pages
-        uses: mh4gf/pr-preview-action@e7afe30c54d588458d0e1bf88d1b16ac90344d9f
+        uses: mh4gf/pr-preview-action@5a20803672c35afa394440e33066409bd4d8c705
         with:
           source-dir: ./build/
           deploy-repository: mh4gf/test-pr-review-target
