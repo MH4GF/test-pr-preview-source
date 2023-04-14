@@ -1,0 +1,33 @@
+name: Deploy PR Preview to GitHub Pages
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy PR Preview to GitHub Pages
+        uses: mh4gf/pr-preview-action@e7afe30c54d588458d0e1bf88d1b16ac90344d9f
+        with:
+          source-dir: ./build/
+          deploy-repository: mh4gf/test-pr-review-target
+          token: ${{ secrets.PAT_PR_PREVIEW_DEPLOY }}
