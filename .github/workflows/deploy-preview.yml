@@ -25,7 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Deploy PR Preview to GitHub Pages
+      - name: Deploy PR Preview to GitHub Pages (current repository)
+        uses: mh4gf/pr-preview-action@5a20803672c35afa394440e33066409bd4d8c705
+        with:
+          source-dir: ./build/
+
+      - name: Deploy PR Preview to GitHub Pages (different repository)
         uses: mh4gf/pr-preview-action@5a20803672c35afa394440e33066409bd4d8c705
         with:
           source-dir: ./build/
